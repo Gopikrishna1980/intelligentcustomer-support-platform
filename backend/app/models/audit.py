@@ -26,7 +26,7 @@ class AuditLog(Base):
     # Details
     description = Column(Text)
     changes = Column(JSONB)  # JSON object showing what changed (before/after)
-    metadata = Column(JSONB)  # Additional metadata
+    audit_metadata = Column(JSONB)  # Additional metadata
     
     # Request info
     ip_address = Column(String(45))

@@ -14,7 +14,7 @@ class TicketBase(BaseModel):
     subject: str = Field(..., min_length=5, max_length=200)
     description: str = Field(..., min_length=10)
     category: Optional[TicketCategory] = None
-    priority: Optional[TicketPriority] = TicketPriority.medium
+    priority: Optional[TicketPriority] = TicketPriority.MEDIUM
 
 
 class TicketCreate(TicketBase):

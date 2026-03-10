@@ -2,8 +2,10 @@
 Common Pydantic schemas used across the application
 """
 from pydantic import BaseModel, Field
-from typing import Optional, List
+from typing import Optional, List, Any, Generic, TypeVar
 from datetime import datetime
+
+T = TypeVar('T')
 
 
 class PaginationParams(BaseModel):
@@ -22,9 +24,9 @@ class PaginationParams(BaseModel):
         return self.page_size
 
 
-class PaginatedResponse(BaseModel):
+class PaginatedResponse(BaseModel, Generic[T]):
     """Generic paginated response wrapper"""
-    items: List[any]
+    items: List[T]
     total: int
     page: int
     page_size: int

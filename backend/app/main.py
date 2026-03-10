@@ -13,11 +13,12 @@ import time
 from app.core.config import settings
 from app.api.v1 import auth, tickets, chat, analytics, kb, webhooks
 from app.api import websocket
-from app.core.database import engine
+from app.core.database import engine, DB_CONNECTED
 from app.models import base
 
-# Create database tables
-base.Base.metadata.create_all(bind=engine)
+# Create database tables (only if database is connected)
+if DB_CONNECTED and engine:
+    base.Base.metadata.create_all(bind=engine)
 
 # Initialize rate limiter
 limiter = Limiter(key_func=get_remote_address)

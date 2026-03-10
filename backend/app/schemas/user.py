@@ -22,7 +22,7 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     """Schema for creating a new user"""
     password: str = Field(..., min_length=8, max_length=100)
-    role: UserRole = UserRole.customer
+    role: UserRole = UserRole.CUSTOMER
     
     @validator('password')
     def validate_password(cls, v):
@@ -78,7 +78,7 @@ class UserUpdate(BaseModel):
 class AgentCreate(UserBase):
     """Schema for creating an agent (admin only)"""
     password: str = Field(..., min_length=8)
-    role: UserRole = Field(UserRole.agent, description="Agent or Manager role")
+    role: UserRole = Field(UserRole.AGENT, description="Agent or Manager role")
     department: Optional[str] = None
     agent_skills: Optional[str] = Field(None, description="Comma-separated skills")
     max_tickets: int = Field(10, ge=1, le=100)

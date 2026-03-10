@@ -3,12 +3,12 @@ import { ArrowRight, Bot, MessageSquare, Zap, BarChart, Globe, Shield } from 'lu
 
 export default function LandingPage() {
   const features = [
-    { icon: Bot, title: 'AI-Powered', description: 'GPT-4 chatbot with intelligent responses' },
-    { icon: MessageSquare, title: 'Real-Time Chat', description: 'WebSocket-based instant messaging' },
-    { icon: Zap, title: 'Smart Routing', description: 'Intelligent ticket assignment' },
-    { icon: BarChart, title: 'Analytics', description: 'Comprehensive insights and reports' },
-    { icon: Globe, title: '20+ Languages', description: 'Multi-language translation support' },
-    { icon: Shield, title: 'Enterprise Security', description: 'RBAC, audit logs, rate limiting' },
+    { icon: Bot, title: 'AI-Powered', description: 'GPT-4 chatbot with intelligent responses', href: '/features/ai-powered' },
+    { icon: MessageSquare, title: 'Real-Time Chat', description: 'WebSocket-based instant messaging', href: '/features/real-time-chat' },
+    { icon: Zap, title: 'Smart Routing', description: 'Intelligent ticket assignment', href: '/features/smart-routing' },
+    { icon: BarChart, title: 'Analytics', description: 'Comprehensive insights and reports', href: '/features/analytics' },
+    { icon: Globe, title: '20+ Languages', description: 'Multi-language translation support', href: '/features/languages' },
+    { icon: Shield, title: 'Enterprise Security', description: 'RBAC, audit logs, rate limiting', href: '/features/security' },
   ]
 
   return (
@@ -99,16 +99,20 @@ export default function LandingPage() {
           {features.map((feature, index) => {
             const Icon = feature.icon
             return (
-              <div
+              <Link
                 key={index}
-                className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition"
+                href={feature.href}
+                className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition group cursor-pointer"
               >
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 dark:group-hover:bg-blue-900/50 transition">
                   <Icon className="w-6 h-6 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-blue-600 transition">{feature.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
-              </div>
+                <div className="mt-4 text-blue-600 text-sm font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition">
+                  Learn more <ArrowRight className="w-4 h-4" />
+                </div>
+              </Link>
             )
           })}
         </div>
